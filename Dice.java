@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Dice {
 
     int diceSize;
-    int number=0;
     String[] selection={"one","two","three","four","five","six"};
     public Dice(int diceSize){
         this.diceSize=diceSize;
