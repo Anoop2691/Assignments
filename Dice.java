@@ -17,8 +17,12 @@ public class Dice {
     String intToString(Dice d){
         int ch=d.rollDice();
         switch(ch){
-            case 1:return "one";
-            case 2:return "two";
+            case 1:if(d.diceSize==2)
+                    return "head";
+                   else return "one";
+            case 2:if(d.diceSize==2)
+                    return "tail";
+                   else return "two";
             case 3:return "three";
             case 4:return "four";
             case 5:return "five";
@@ -33,7 +37,7 @@ public class Dice {
         System.out.println();
         if(size==2 || size==4 || size==6 ){
             Dice d=new Dice(size);
-            System.out.println(d.intToString(d)+" "+d.number);
+            System.out.println(d.intToString(d));
         }
         else{
             System.out.println("Invalid Input"); 
