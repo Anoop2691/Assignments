@@ -6,29 +6,12 @@ public class Dice {
 
     int diceSize;
     int number=0;
+    String[] selection={"one","two","three","four","five","six"};
     public Dice(int diceSize){
         this.diceSize=diceSize;
     }
-    public int rollDice(){
-        Random rand=new Random();
-        number=rand.nextInt(diceSize)+1;
-        return number;       
-    }
-    String intToString(Dice d){
-        int ch=d.rollDice();
-        switch(ch){
-            case 1:if(d.diceSize==2)
-                    return "head";
-                   else return "one";
-            case 2:if(d.diceSize==2)
-                    return "tail";
-                   else return "two";
-            case 3:return "three";
-            case 4:return "four";
-            case 5:return "five";
-            case 6:return "six";
-            default: return null;
-        }
+    public String rollDice(){
+        return selection[new Random().nextInt(diceSize)];      
     }
     public static void main(String[] args) {
         System.out.print("Enter Size of Dice (2,4,6) :");
@@ -37,7 +20,7 @@ public class Dice {
         System.out.println();
         if(size==2 || size==4 || size==6 ){
             Dice d=new Dice(size);
-            System.out.println(d.intToString(d));
+            System.out.println(d.rollDice());
         }
         else{
             System.out.println("Invalid Input"); 
