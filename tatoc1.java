@@ -27,20 +27,20 @@ public class Box {
           WebElement element = driver.findElement(By.className("greenbox"));
 //Enter something to search                 
           element.click();
-          String s="",s1="";
-          s=driver.switchTo().frame("main").findElement(By.id("answer")).getAttribute("class");
-          System.out.println(s);
+          String parentFrameDivClass="",childFrameDivClass="";
+          parentFrameDivClass=driver.switchTo().frame("main").findElement(By.id("answer")).getAttribute("class");
+          //System.out.println(s);
           do {
-          s1=driver.switchTo().frame("child").findElement(By.id("answer")).getAttribute("class");;
-          System.out.println(s1);
+        	  childFrameDivClass=driver.switchTo().frame("child").findElement(By.id("answer")).getAttribute("class");;
+          //System.out.println(s1);
           driver.switchTo().parentFrame();
-          if(s.equals(s1)) {
+          if(parentFrameDivClass.equals(childFrameDivClass)) {
         	  driver.findElement(By.linkText("Proceed")).click();
           }
           else {
         	  driver.findElement(By.linkText("Repaint Box 2")).click();
           }
-          }while(!s.equals(s1));
+          }while(!parentFrameDivClass.equals(childFrameDivClass));
           new Actions(driver).dragAndDrop(driver.findElement(By.id("dragbox")),driver.findElement(By.id("dropbox"))).perform();
           driver.findElement(By.linkText("Proceed")).click();
           driver.findElement(By.linkText("Launch Popup Window")).click();
