@@ -16,8 +16,9 @@ public class Box {
 		   System.setProperty("webdriver.chrome.driver", "C:\\Users\\anoopkumar\\Downloads\\chromedriver.exe");
 		   WebDriver driver = new ChromeDriver();
            System.out.println("Chrome is opened");
-           driver.get("http://10.0.1.86/tatoc/basic/grid/gate");
+           driver.get("http://10.0.1.86/tatoc/");
            System.out.println("tatoc is selected");
+           driver.findElement(By.linkText("Basic Course")).click();
            driver.findElement(By.className("greenbox")).click();    
            String Box1Color="",Box2Color="";
           Box1Color=driver.switchTo().frame("main").findElement(By.id("answer")).getAttribute("class");
