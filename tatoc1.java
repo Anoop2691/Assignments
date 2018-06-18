@@ -18,18 +18,19 @@ public class Box {
            System.out.println("Chrome is opened");
            driver.get("http://10.0.1.86/tatoc/basic/grid/gate");
            System.out.println("tatoc is selected");
-           driver.findElement(By.className("greenbox")).click();          String parentFrameDivClass="",childFrameDivClass="";
-          parentFrameDivClass=driver.switchTo().frame("main").findElement(By.id("answer")).getAttribute("class");
+           driver.findElement(By.className("greenbox")).click();    
+           String Box1Color="",Box2Color="";
+          Box1Color=driver.switchTo().frame("main").findElement(By.id("answer")).getAttribute("class");
           do {
-        	  childFrameDivClass=driver.switchTo().frame("child").findElement(By.id("answer")).getAttribute("class");;
+        	  Box2Color=driver.switchTo().frame("child").findElement(By.id("answer")).getAttribute("class");;
         	  driver.switchTo().parentFrame();
-        	  if(parentFrameDivClass.equals(childFrameDivClass)) {
+        	  if(Box1Color.equals(Box2Color)) {
         		  driver.findElement(By.linkText("Proceed")).click();
         	  }
         	  else {
         		  driver.findElement(By.linkText("Repaint Box 2")).click();
         	  }
-          }while(!parentFrameDivClass.equals(childFrameDivClass));
+          }while(!Box1Color.equals(Box2Color));
           new Actions(driver).dragAndDrop(driver.findElement(By.id("dragbox")),driver.findElement(By.id("dropbox"))).perform();
           driver.findElement(By.linkText("Proceed")).click();
           driver.findElement(By.linkText("Launch Popup Window")).click();
@@ -48,6 +49,6 @@ public class Box {
           Cookie ck=new Cookie("Token", str[str.length-1]);
           driver.manage().addCookie(ck);
          driver.findElement(By.linkText("Proceed")).click();
-		driver.close();
+        // driver.close();
 	}
 }
